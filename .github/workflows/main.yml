@@ -25,5 +25,5 @@ jobs:
     - name: Run Script
       env:
         CANDIDATE_GITHUB_USERNAME: ${{ github.event.inputs.candidate_username }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Or your personal access token
+        GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_TOKEN }} # Or your personal access token
       run: node re-create.js
