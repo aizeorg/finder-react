@@ -97,8 +97,6 @@ async function moveIssues() {
 // Main Function
 async function main() {
   try {
-
-    console.log("checking how the token looks like", GITHUB_TOKEN);
     console.log("Creating new repository...");
     await createNewRepo();
 
