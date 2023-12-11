@@ -1,0 +1,29 @@
+name: Your Workflow Name
+
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_username:
+        description: 'Candidate GitHub Username'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' 
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Script
+      env:
+        CANDIDATE_GITHUB_USERNAME: ${{ github.event.inputs.candidate_username }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Or your personal access token
+      run: node re-create.js
