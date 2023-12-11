@@ -1,8 +1,5 @@
 const axios = require("axios");
 const shell = require("shelljs");
-
-// const CANDIDATE_GITHUB_USERNAME = "test1";
-// const GITHUB_TOKEN = "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"; // Be sure to secure your token
 const CANDIDATE_GITHUB_USERNAME = process.env.CANDIDATE_GITHUB_USERNAME;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const USER_NAME = "aizeorg";
