@@ -1,4 +1,4 @@
-name: Your Workflow Name
+name: Recreate repo
 
 on:
   workflow_dispatch:
