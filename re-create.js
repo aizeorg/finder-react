@@ -1,10 +1,22 @@
 const axios = require("axios");
 const shell = require("shelljs");
+
+const COLLAB_USER_NAME = "anna-o-aize";
 const CANDIDATE_GITHUB_USERNAME = process.env.CANDIDATE_GITHUB_USERNAME;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const USER_NAME = "aizeorg";
 const REPO_NAME = "finder-react";
 const NEW_REPO_NAME = `finder-react-${CANDIDATE_GITHUB_USERNAME}`;
+
+// Function to invite a collaborator
+async function inviteCollaborator(collaboratorUsername) {
+  const url = `https://api.github.com/repos/${USER_NAME}/${NEW_REPO_NAME}/collaborators/${collaboratorUsername}`;
+  const data = {
+    permission: "admin", // "admin" permission allows the collaborator to manage repository access for others
+  };
+
+  return await githubApiRequest(url, "put", data);
+}
 
 // Helper function to handle GitHub API requests
 const githubApiRequest = async (url, method = "get", data = {}) => {
@@ -102,6 +114,12 @@ async function main() {
 
     console.log("Moving issues...");
     await moveIssues();
+
+    console.log("Inviting collaborator...");
+    await inviteCollaborator(CANDIDATE_GITHUB_USERNAME); // Replace with actual GitHub username
+
+    console.log("Inviting Anna...");
+    await inviteCollaborator(COLLAB_USER_NAME); // Replace with actual GitHub username
 
     console.log("Finished!");
   } catch (error) {
